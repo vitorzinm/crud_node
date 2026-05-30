@@ -4,25 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script type="module" src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <form>
-      <div class="cadastro">
-        <input type="text" id="nome" placeholder="nome:" />
-        <input ype="email" id="email" placeholder="email:" />
-        <button type="submit" id="butaoCadatro">Salvar</button>
-      </div>
-      <div class="atualizacao">
-        <input  type="text" id="nomeAntigo" placeholder="Antigo nome:" />
-        <input type="text" id="nomeNovo" placeholder="Novo nome:"" />
-        <button type="submit" id="butaoAtualizar">Atualizar</button>
-      </div>
-      <div class="atulizacaoemail">
-        <input type="text" id="nome1" placeholder="Antigo nome:" />
-        <input type="text" id="nomeEmail" placeholder="Novo Email:" />
-        <button type="submit" id="butaoAtualizarEmail">Atualizar</button>
+      <div class="container">
+        <div class="cadastro" id="cadastro">
+          <h2>Login</h2>
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome"/>
+          <label for="email">Email:</label>
+          <input type="email" id="email" />
+          <div class="button">
+          <button type="submit" id="butaoCadatro">Cadastrar</button>
+          </div>
+        </div>
+        <div class="atualizacoesBotao" id="atualizacoesBotao">
+          <h2>Atualização de Dados</h2>
+          <h3>Quer atualizar:</h3>
+          <button type="button" class="direcionadorNome" id="direcionadorNome">Nome</button>
+          <p>ou</p>
+          <button type="button" class="direcionadorEmail" id="direcionadorEmail">Email</button>
+        </div>
+        <div class="atualizacoes" id="atualizacoes">
+          <h2>Atualização de Dados</h2>
+
+          <div class="atualizacaoNome" id="atualizacaoNome">
+            <h3>Atualizar nome:</h3>
+            <label for="nomeAntigo">Nome Atual:</label>
+            <input  type="text" id="nomeAntigo" />
+            <br>
+            <label for="nomeEmail">Novo Novo:</label>
+            <input type="text" id="nomeNovo"/>
+            <br>
+            <div class="configBotao">
+              <button type="submit" id="butaoAtualizar">Atualizar</button>
+              <button type="button" id="voltar1" class="voltar">voltar</button>
+            </div>
+          </div>
+          <div class="atulizacaoemail"  id="atulizacaoemail">
+            <h3>Atualizar email:</h3>
+            <label for="nome1">Nome Atual:</label>
+            <input type="text" id="nome1" />
+            <br>
+            <label for="nomeEmail">Novo Email:</label>
+            <input type="text" id="nomeEmail"/>
+            <br>
+            <div class="configBotao">
+              <button type="submit" id="butaoAtualizarEmail">Atualizar</button>
+              <button type="button" id="voltar" class="voltar">voltar</button>
+            </div>
+          </div>
+        </div>
+        <div class="mostrar">
+          <table id="tabela">
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Email</th>
+            </tr>
+          </table>
+        </div>
+        <div class="delete">
+        </div>
       </div>
     </form>
   </body>
+   <script type="module" src="./script.js"></script>
 </html>

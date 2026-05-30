@@ -19,8 +19,7 @@ app.post('/cadastrar', async (req, res) => {
   const nome = req.body.nome
   const email = req.body.email
 
-   console.log(nome1)
-  console.log(emailNovo)
+
 
   if (!nome) {
     return res.status(400).json({ erro: 'Você não informou o nome' })
@@ -137,3 +136,19 @@ async function main() {
 }
 
 main().catch(console.error)
+
+app.get('/visualizar', async (req, res) => {
+  const connection = await mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'Vitor261198@',
+    database: 'crud_node',
+  })
+
+  const [rows] = await connection.execute(
+    'SELECT * FROM usuarios'
+  )
+
+  return res.status(200).json({ rows })
+})

@@ -1,9 +1,57 @@
 const butaoCadatro = document.getElementById('butaoCadatro')
 const butaoAtualizar = document.getElementById('butaoAtualizar')
 const butaoAtualizarEmail = document.getElementById('butaoAtualizarEmail')
+const direcionadorNome = document.getElementById('direcionadorNome')
+const direcionadorEmail = document.getElementById('direcionadorEmail')
+const voltar = document.getElementById('voltar')
+const voltar1 = document.getElementById('voltar1')
+
+voltar1.addEventListener('click', function(){
+  const atualizacoesBotao = document.getElementById('atualizacoesBotao')
+  const atualizacoes = document.getElementById('atualizacoes')
+  const atulizacaoemail = document.getElementById('atulizacaoemail')
+  const atualizacaoNome = document.getElementById('atualizacaoNome')
+
+  atualizacoes.style.display = 'none'
+  atualizacoesBotao.style.display = 'flex'
+  atulizacaoemail.style.display = 'none'
+  atualizacaoNome.style.display = 'none'
+})
+voltar.addEventListener('click', function(){
+  const atualizacoesBotao = document.getElementById('atualizacoesBotao')
+  const atualizacoes = document.getElementById('atualizacoes')
+  const atulizacaoemail = document.getElementById('atulizacaoemail')
+  const atualizacaoNome = document.getElementById('atualizacaoNome')
+
+  atualizacoes.style.display = 'none'
+  atualizacoesBotao.style.display = 'flex'
+  atulizacaoemail.style.display = 'none'
+  atualizacaoNome.style.display = 'none'
+})
+direcionadorNome.addEventListener('click', function(){
+  const atualizacoesBotao = document.getElementById('atualizacoesBotao')
+  const atualizacoes = document.getElementById('atualizacoes')
+  const atulizacaoemail = document.getElementById('atulizacaoemail')
+  const atualizacaoNome = document.getElementById('atualizacaoNome')
+  
+  atualizacoes.style.display = 'flex'
+  atualizacoesBotao.style.display = 'none'
+  atulizacaoemail.style.display = 'none'
+  atualizacaoNome.style.display = 'flex'
+})
+direcionadorEmail.addEventListener('click', function(){
+  const atualizacoes = document.getElementById('atualizacoes')
+  const atualizacoesBotao = document.getElementById('atualizacoesBotao')
+  const atulizacaoemail = document.getElementById('atulizacaoemail')
+  const atualizacaoNome = document.getElementById('atualizacaoNome')
+
+  atualizacoes.style.display = 'flex'
+  atualizacoesBotao.style.display = 'none'
+  atulizacaoemail.style.display = 'flex'
+  atualizacaoNome.style.display = 'none'
+})
 
 // atualizar email -------------------------------------------------------
-
 butaoAtualizarEmail.addEventListener('click', async e => {
   e.preventDefault()
 
@@ -102,6 +150,9 @@ butaoAtualizar.addEventListener('click', async e => {
 butaoCadatro.addEventListener('click', async e => {
   e.preventDefault()
 
+  const divAtualizacoes = document.getElementById('atualizacoes')
+  const divCasdastro = document.getElementById('cadastro')
+ 
   const nome = document.getElementById('nome').value
   const email = document.getElementById('email').value
 
@@ -147,4 +198,17 @@ butaoCadatro.addEventListener('click', async e => {
   } else {
     alert('Erro')
   }
+})
+const tabela = document.getElementById('tabela')
+const response = await fetch('/visualizar')
+const data = await response.json()
+
+data.rows.forEach(usuario => {
+  tabela.innerHTML += `
+    <tr>
+      <td>${usuario.id}</td>
+      <td>${usuario.nome}</td>
+      <td>${usuario.email}</td>
+    </tr>
+  `
 })

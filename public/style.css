@@ -1,0 +1,139 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container{
+    /* border: 1px solid black;  */
+    display: grid;
+    grid-template-columns: 230px 230px;
+    gap: 60px;
+    width: calc(250px * 2 + 20px);
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.cadastro{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    align-content: center;
+    flex-wrap: wrap;    
+    height: 230px;
+    width: 250px;
+    gap: 5px;
+    border-radius: 8px;
+    justify-content: center
+}
+input{
+    width: 200px;
+    height: 20px;
+}
+.cadastro h2{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.cadastro button{
+    height: 30px;
+    width: 130px;
+    font-size:medium;
+    border-radius: 8px;
+}
+.atualizacoes{
+    border: 1px solid black;
+    display: none;
+    height: 230px;
+    width: 250px;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: stretch;
+    border-radius: 8px;
+    padding: 10px;
+}
+.atualizacoesBotao{
+    height: 230px;
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly
+    
+}
+.atualizacoesBotao button{
+    height: 35px;
+    width: 180px ;
+    border-radius: 8px;
+}
+
+.atualizacoesBotao h2,h3{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.mostrar{
+    height: 230px;
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    overflow: auto;
+}
+.delete{
+    height: 230px;
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+.atulizacaoemail,
+.atualizacaoNome{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    align-content: center;
+    flex-wrap: wrap;    
+    border-radius: 8px;
+    justify-content: center
+}
+.configBotao{
+    display: flex;
+    justify-content: space-around
+}
+.tabela {
+  width: 250px;
+  border-radius: 8px;
+}
+.mostrar table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.mostrar th,
+.mostrar td {
+  border: 1px solid black;
+  /* padding: 5px; */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.mostrar{
+    font-size: small;
+}
+.tabela {
+  width: 250px;
+  overflow: auto;
+
+}
+
+.mostrar::-webkit-scrollbar {
+  display: none;
+}
+p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
