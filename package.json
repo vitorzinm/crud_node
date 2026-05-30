@@ -15,5 +15,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorzinm/crud_node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vitorzinm/crud_node/issues"
+  },
+  "homepage": "https://github.com/vitorzinm/crud_node#readme"
 }

@@ -1,4 +1,5 @@
 import express from 'express'
+import mysql from 'mysql2/promise'
 
 const port = 3000
 const app = express()
@@ -10,73 +11,128 @@ app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}/`)
 })
 
-app.post('/usuarios', async (req, res) => {
+// cadastrar -------------------------------------------------------------
+
+app.post('/cadastrar', async (req, res) => {
+
+  console.log(req.body)
   const nome = req.body.nome
   const email = req.body.email
 
+   console.log(nome1)
+  console.log(emailNovo)
+
   if (!nome) {
-    return res.json({ erro: 'Você não informou o nome' }).status(400)
+    return res.status(400).json({ erro: 'Você não informou o nome' })
   }
 
   if (!email) {
-    return res.json({ erro: 'Você não informou o email' }).status(400)
+    return res.status(400).json({ erro: 'Você não informou o email' })
   }
 
   const connection = await mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '',
-    database: 'qualquer',
+    password: 'Vitor261198@',
+    database: 'crud_node',
   })
 
   await connection.execute(`
-      CREATE TABLE IF NOT EXISTS usuarios ( 
-        id INT PRIMARY KEY AUTO_INCREMENT, 
-        nome VARCHAR(300),
-        email VARCHAR(200) 
-      )   
-    `)
+    CREATE TABLE IF NOT EXISTS usuarios (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      nome VARCHAR(300),
+      email VARCHAR(200)
+    )
+  `)
 
-  await connection.execute('INSERT INTO usuarios (nome,email) VALUES (?, ?)', [
-    nome,
-    email,
-  ])
+  await connection.execute(
+    'INSERT INTO usuarios (nome,email) VALUES (?, ?)',
+    [nome, email]
+  )
 
   const [rows] = await connection.execute('SELECT * FROM usuarios')
-  return res.json({ rows }).status(200)
+
+  return res.status(200).json({ rows })
 })
 
-import mysql from 'mysql2/promise'
+// atualizar nome --------------------------------------------------------
+
+app.put('/atualizar', async (req, res) => {
+  const nomeAntigo = req.body.nomeAntigo
+  const nomeNovo = req.body.nomeNovo
+
+  if (!nomeAntigo || !nomeNovo) {
+    return res.status(400).json({
+      erro: 'Você não informou o nome',
+    })
+  }
+
+  const connection = await mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'Vitor261198@',
+    database: 'crud_node',
+  })
+
+  await connection.execute(
+    'UPDATE usuarios SET nome = ? WHERE nome = ?',
+    [nomeNovo, nomeAntigo]
+  )
+
+  return res.status(200).json({
+    mensagem: 'Usuário atualizado',
+  })
+})
+
+// atualizar email -------------------------------------------------------
+
+app.put('/atualizarEmail', async (req, res) => {
+  const nome1 = req.body.nome1
+  const emailNovo = req.body.emailNovo
+
+  if (!nome1 || !emailNovo) {
+    return res.status(400).json({
+      erro: 'Dados inválidos',
+    })
+  }
+
+  const connection = await mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'Vitor261198@',
+    database: 'crud_node',
+  })
+
+  await connection.execute(
+    'UPDATE usuarios SET email = ? WHERE nome = ?',
+    [emailNovo, nome1]
+  )
+
+  return res.status(200).json({
+    mensagem: 'Usuário atualizado',
+  })
+})
+
+// teste conexão ---------------------------------------------------------
 
 async function main() {
   const connection = await mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '',
-    database: 'qualquer',
+    password: 'Vitor261198@',
+    database: 'crud_node',
   })
 
   console.log('Conectado ao MySQL')
 
-  // await connection.execute(`
-  //   CREATE TABLE IF NOT EXISTS teste (
-  //     id INT PRIMARY KEY AUTO_INCREMENT,
-  //     sla VARCHAR(100),
-  //   )
-  // `);
+  const [rows] = await connection.execute('SELECT * FROM usuarios')
 
-  // await connection.execute('INSERT INTO teste (sla,idade) VALUES (?, ?)', [
-  //   'aoiwjhfoiawjefiwjae',
-  //   25,
-  // ])
+  console.log(rows)
 
-  let rows
-  ;[rows] = await connection.execute('SELECT * FROM teste')
-  console.log(rows)
-  ;[rows] = await connection.execute('SELECT idade FROM teste')
-  console.log(rows)
   await connection.end()
 }
 
