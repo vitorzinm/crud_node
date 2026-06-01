@@ -14,12 +14,9 @@ app.listen(port, () => {
 // cadastrar -------------------------------------------------------------
 
 app.post('/cadastrar', async (req, res) => {
-
   console.log(req.body)
   const nome = req.body.nome
   const email = req.body.email
-
-
 
   if (!nome) {
     return res.status(400).json({ erro: 'Você não informou o nome' })
@@ -33,7 +30,7 @@ app.post('/cadastrar', async (req, res) => {
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'Vitor261198@',
+    password: '',
     database: 'crud_node',
   })
 
@@ -45,10 +42,10 @@ app.post('/cadastrar', async (req, res) => {
     )
   `)
 
-  await connection.execute(
-    'INSERT INTO usuarios (nome,email) VALUES (?, ?)',
-    [nome, email]
-  )
+  await connection.execute('INSERT INTO usuarios (nome,email) VALUES (?, ?)', [
+    nome,
+    email,
+  ])
 
   const [rows] = await connection.execute('SELECT * FROM usuarios')
 
@@ -71,14 +68,14 @@ app.put('/atualizar', async (req, res) => {
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'Vitor261198@',
+    password: '',
     database: 'crud_node',
   })
 
-  await connection.execute(
-    'UPDATE usuarios SET nome = ? WHERE nome = ?',
-    [nomeNovo, nomeAntigo]
-  )
+  await connection.execute('UPDATE usuarios SET nome = ? WHERE nome = ?', [
+    nomeNovo,
+    nomeAntigo,
+  ])
 
   return res.status(200).json({
     mensagem: 'Usuário atualizado',
@@ -101,14 +98,14 @@ app.put('/atualizarEmail', async (req, res) => {
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'Vitor261198@',
+    password: '',
     database: 'crud_node',
   })
 
-  await connection.execute(
-    'UPDATE usuarios SET email = ? WHERE nome = ?',
-    [emailNovo, nome1]
-  )
+  await connection.execute('UPDATE usuarios SET email = ? WHERE nome = ?', [
+    emailNovo,
+    nome1,
+  ])
 
   return res.status(200).json({
     mensagem: 'Usuário atualizado',
@@ -122,7 +119,7 @@ async function main() {
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'Vitor261198@',
+    password: '',
     database: 'crud_node',
   })
 
@@ -142,13 +139,11 @@ app.get('/visualizar', async (req, res) => {
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'Vitor261198@',
+    password: '',
     database: 'crud_node',
   })
 
-  const [rows] = await connection.execute(
-    'SELECT * FROM usuarios'
-  )
+  const [rows] = await connection.execute('SELECT * FROM usuarios')
 
   return res.status(200).json({ rows })
 })
@@ -156,21 +151,20 @@ app.get('/visualizar', async (req, res) => {
 app.delete('/Deletar', async (req, res) => {
   try {
     const connection = await mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'Vitor261198@',
-    database: 'crud_node',
+      host: 'localhost',
+      port: 3306,
+      user: 'root',
+      password: '',
+      database: 'crud_node',
     })
 
     console.log(req.body)
 
     const nomeDeletado = req.body.nomeDeletado
 
-    await connection.execute(
-      'DELETE FROM usuarios WHERE nome = ?',
-      [nomeDeletado]
-    )
+    await connection.execute('DELETE FROM usuarios WHERE nome = ?', [
+      nomeDeletado,
+    ])
 
     res.status(200).json({
       mensagem: 'Usuário deletado com sucesso',

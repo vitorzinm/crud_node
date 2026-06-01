@@ -28,7 +28,7 @@ document.addEventListener('keydown', function (event) {
     }
   }
 })
-voltar1.addEventListener('click', function(){
+voltar1.addEventListener('click', function () {
   const atualizacoesBotao = document.getElementById('atualizacoesBotao')
   const atualizacoes = document.getElementById('atualizacoes')
   const atulizacaoemail = document.getElementById('atulizacaoemail')
@@ -39,7 +39,7 @@ voltar1.addEventListener('click', function(){
   atulizacaoemail.style.display = 'none'
   atualizacaoNome.style.display = 'none'
 })
-voltar.addEventListener('click', function(){
+voltar.addEventListener('click', function () {
   const atualizacoesBotao = document.getElementById('atualizacoesBotao')
   const atualizacoes = document.getElementById('atualizacoes')
   const atulizacaoemail = document.getElementById('atulizacaoemail')
@@ -50,18 +50,18 @@ voltar.addEventListener('click', function(){
   atulizacaoemail.style.display = 'none'
   atualizacaoNome.style.display = 'none'
 })
-direcionadorNome.addEventListener('click', function(){
+direcionadorNome.addEventListener('click', function () {
   const atualizacoesBotao = document.getElementById('atualizacoesBotao')
   const atualizacoes = document.getElementById('atualizacoes')
   const atulizacaoemail = document.getElementById('atulizacaoemail')
   const atualizacaoNome = document.getElementById('atualizacaoNome')
-  
+
   atualizacoes.style.display = 'flex'
   atualizacoesBotao.style.display = 'none'
   atulizacaoemail.style.display = 'none'
   atualizacaoNome.style.display = 'flex'
 })
-butaoAtualizar.addEventListener('click', function(){
+direcionadorEmail.addEventListener('click', function () {
   const atualizacoes = document.getElementById('atualizacoes')
   const atualizacoesBotao = document.getElementById('atualizacoesBotao')
   const atulizacaoemail = document.getElementById('atulizacaoemail')
@@ -76,36 +76,37 @@ butaoAtualizar.addEventListener('click', function(){
 // deletar ---------------------------------------------------------------
 butaoDeletar.addEventListener('click', async e => {
   e.preventDefault()
-  
+
   const nomeDeletado = document.getElementById('nomeDeletado').value
 
   if (nomeDeletado.length >= 300) {
     alert('Isso n é nome')
     return
   }
-  
+
   if (nomeDeletado == '') {
     alert('Por favor inserir um valor a nome')
     return
   }
-  
-  const response = await fetch('/Deletar', {
-  method: 'DELETE',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    nomeDeletado,
-  }),
-})
 
-const data = await response.json()
+  const response = await fetch('/Deletar', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      nomeDeletado,
+    }),
+  })
+
+  const data = await response.json()
 
   if (data) {
     alert('Deletado com sucesso!!!')
   } else {
     alert('Erro')
   }
+  renderizarDadosUsuarios()
 })
 
 // atualizar email -------------------------------------------------------
@@ -160,6 +161,8 @@ butaoAtualizarEmail.addEventListener('click', async e => {
   } else {
     alert('Erro')
   }
+
+  renderizarDadosUsuarios()
 })
 
 // atualizar nome --------------------------------------------------------
@@ -200,6 +203,8 @@ butaoAtualizar.addEventListener('click', async e => {
   } else {
     alert('Erro')
   }
+
+  renderizarDadosUsuarios()
 })
 
 // cadastrar -------------------------------------------------------------
@@ -257,17 +262,24 @@ butaoCadatro.addEventListener('click', async e => {
   } else {
     alert('Erro')
   }
-})
-const tabela = document.getElementById('tabela')
-const response = await fetch('/visualizar')
-const data = await response.json()
 
-data.rows.forEach(usuario => {
-  tabela.innerHTML += `
-    <tr>
-      <td>${usuario.id}</td>
-      <td>${usuario.nome}</td>
-      <td>${usuario.email}</td>
-    </tr>
-  `
+  renderizarDadosUsuarios()
 })
+
+async function renderizarDadosUsuarios() {
+  const tabela = document.getElementById('tabela')
+  const response = await fetch('/visualizar')
+  const data = await response.json()
+
+  data.rows.forEach(usuario => {
+    tabela.innerHTML = `
+      <tr>
+        <td>${usuario.id}</td>
+        <td>${usuario.nome}</td>
+        <td>${usuario.email}</td>
+      </tr>
+    `
+  })
+}
+
+renderizarDadosUsuarios()

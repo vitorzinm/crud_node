@@ -4,113 +4,107 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
   </head>
-<body>
-  <div class="container">
-    <div>
-      <h2>CREATE / Post</h2>
-      <div class="cadastro" id="cadastro">
-        <h2>Login</h2>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" class="inputCadastro" />
-        <label for="email">Email:</label>
-        <input type="email" id="email" class="inputCadastro" />
-        <div class="button">
-          <button type="button" class="butaoCadatro" id="butaoCadatro">
-            Cadastrar
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <h2>UPDATE / Put</h2>
-      <div class="atualizacoesBotao" id="atualizacoesBotao">
-        <h2>Atualização de Dados</h2>
-        <h3>Quer atualizar:</h3>
-        <button type="button" class="direcionadorNome" id="direcionadorNome">
-          Nome
-        </button>
-        <p>ou</p>
-        <button type="button" class="direcionadorEmail" id="direcionadorEmail">
-          Email
-        </button>
-      </div>
-
-      <div class="atualizacoes" id="atualizacoes">
-        <h2>Atualização de Dados</h2>
-
-        <div class="atualizacaoNome" id="atualizacaoNome">
-          <label for="nomeAntigo">Nome Atual:</label>
-          <input type="text" id="nomeAntigo" />
-          <br />
-
-          <label for="nomeNovo">Novo Nome:</label>
-          <input type="text" id="nomeNovo" />
-          <br />
-
-          <div class="configBotao">
-            <button type="button" id="butaoAtualizar">
-              Atualizar
-            </button>
-
-            <button type="button" id="voltar1" class="voltar">
-              voltar
-            </button>
-          </div>
-        </div>
-
-        <div class="atulizacaoemail" id="atulizacaoemail">
-          <label for="nome1">Nome Atual:</label>
-          <input type="text" id="nome1" />
-          <br />
-
-          <label for="nomeEmail">Novo Email:</label>
-          <input type="text" id="nomeEmail" />
-          <br />
-
-          <div class="configBotao">
-            <button type="button" id="butaoAtualizarEmail">
-              Atualizar
-            </button>
-
-            <button type="button" id="voltar" class="voltar">
-              voltar
+  <body>
+    <div class="container">
+      <div>
+        <h2>CREATE / Post</h2>
+        <div class="cadastro" id="cadastro">
+          <h2>Login</h2>
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" class="inputCadastro" />
+          <label for="email">Email:</label>
+          <input type="email" id="email" class="inputCadastro" />
+          <div class="button">
+            <button type="button" class="butaoCadatro" id="butaoCadatro">
+              Cadastrar
             </button>
           </div>
         </div>
       </div>
-    </div>
 
-    <div>
-      <h2>READ / Get</h2>
-      <div class="mostrar">
-        <table id="tabela">
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <div>
-      <h2>DELETE / Delete</h2>
-      <div class="delete">
-        <h2>Delete</h2>
-        <label for="nomeDeletado">Nome:</label>
-        <input type="text" id="nomeDeletado" />
-
-        <div class="button">
-          <button type="button" id="deletar">
-            Deletar
+      <div>
+        <h2>UPDATE / Put</h2>
+        <div class="atualizacoesBotao" id="atualizacoesBotao">
+          <h2>Atualização de Dados</h2>
+          <h3>Quer atualizar:</h3>
+          <button type="button" class="direcionadorNome" id="direcionadorNome">
+            Nome
           </button>
+          <p>ou</p>
+          <button
+            type="button"
+            class="direcionadorEmail"
+            id="direcionadorEmail"
+          >
+            Email
+          </button>
+        </div>
+
+        <div class="atualizacoes" id="atualizacoes">
+          <h2>Atualização de Dados</h2>
+
+          <div class="atualizacaoNome" id="atualizacaoNome">
+            <label for="nomeAntigo">Nome Atual:</label>
+            <input type="text" id="nomeAntigo" />
+            <br />
+
+            <label for="nomeNovo">Novo Nome:</label>
+            <input type="text" id="nomeNovo" />
+            <br />
+
+            <div class="configBotao">
+              <button type="button" id="butaoAtualizar">Atualizar</button>
+
+              <button type="button" id="voltar1" class="voltar">voltar</button>
+            </div>
+          </div>
+
+          <div class="atulizacaoemail" id="atulizacaoemail">
+            <label for="nome1">Nome Atual:</label>
+            <input type="text" id="nome1" />
+            <br />
+
+            <label for="nomeEmail">Novo Email:</label>
+            <input type="text" id="nomeEmail" />
+            <br />
+
+            <div class="configBotao">
+              <button type="button" id="butaoAtualizarEmail">Atualizar</button>
+
+              <button type="button" id="voltar" class="voltar">voltar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2>READ / Get</h2>
+        <div class="mostrar">
+          <table id="tabela">
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Email</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2>DELETE / Delete</h2>
+        <div class="delete">
+          <h2>Delete</h2>
+          <label for="nomeDeletado">Nome:</label>
+          <input type="text" id="nomeDeletado" />
+
+          <div class="button">
+            <button type="button" id="deletar">Deletar</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
-   <script type="module" src="./script.js"></script>
+  </body>
+  <script type="module" src="./script.js"></script>
 </html>
