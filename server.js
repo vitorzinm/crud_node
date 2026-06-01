@@ -152,3 +152,34 @@ app.get('/visualizar', async (req, res) => {
 
   return res.status(200).json({ rows })
 })
+
+app.delete('/Deletar', async (req, res) => {
+  try {
+    const connection = await mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'Vitor261198@',
+    database: 'crud_node',
+    })
+
+    console.log(req.body)
+
+    const nomeDeletado = req.body.nomeDeletado
+
+    await connection.execute(
+      'DELETE FROM usuarios WHERE nome = ?',
+      [nomeDeletado]
+    )
+
+    res.status(200).json({
+      mensagem: 'Usuário deletado com sucesso',
+    })
+  } catch (erro) {
+    console.error(erro)
+
+    res.status(500).json({
+      erro: erro.message,
+    })
+  }
+})

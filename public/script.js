@@ -1,11 +1,33 @@
 const butaoCadatro = document.getElementById('butaoCadatro')
 const butaoAtualizar = document.getElementById('butaoAtualizar')
 const butaoAtualizarEmail = document.getElementById('butaoAtualizarEmail')
+const butaoDeletar = document.getElementById('deletar')
 const direcionadorNome = document.getElementById('direcionadorNome')
 const direcionadorEmail = document.getElementById('direcionadorEmail')
 const voltar = document.getElementById('voltar')
 const voltar1 = document.getElementById('voltar1')
 
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    event.preventDefault()
+
+    if (event.target.id === 'email') {
+      butaoCadatro.click()
+    }
+
+    if (event.target.id === 'nomeNovo' || event.target.id === 'nomeAntigo') {
+      butaoAtualizar.click()
+    }
+
+    if (event.target.id === 'nome1' || event.target.id === 'nomeEmail') {
+      butaoAtualizarEmail.click()
+    }
+
+    if (event.target.id === 'nomeDeletado') {
+      butaoDeletar.click()
+    }
+  }
+})
 voltar1.addEventListener('click', function(){
   const atualizacoesBotao = document.getElementById('atualizacoesBotao')
   const atualizacoes = document.getElementById('atualizacoes')
@@ -39,7 +61,7 @@ direcionadorNome.addEventListener('click', function(){
   atulizacaoemail.style.display = 'none'
   atualizacaoNome.style.display = 'flex'
 })
-direcionadorEmail.addEventListener('click', function(){
+butaoAtualizar.addEventListener('click', function(){
   const atualizacoes = document.getElementById('atualizacoes')
   const atualizacoesBotao = document.getElementById('atualizacoesBotao')
   const atulizacaoemail = document.getElementById('atulizacaoemail')
@@ -49,6 +71,41 @@ direcionadorEmail.addEventListener('click', function(){
   atualizacoesBotao.style.display = 'none'
   atulizacaoemail.style.display = 'flex'
   atualizacaoNome.style.display = 'none'
+})
+
+// deletar ---------------------------------------------------------------
+butaoDeletar.addEventListener('click', async e => {
+  e.preventDefault()
+  
+  const nomeDeletado = document.getElementById('nomeDeletado').value
+
+  if (nomeDeletado.length >= 300) {
+    alert('Isso n é nome')
+    return
+  }
+  
+  if (nomeDeletado == '') {
+    alert('Por favor inserir um valor a nome')
+    return
+  }
+  
+  const response = await fetch('/Deletar', {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    nomeDeletado,
+  }),
+})
+
+const data = await response.json()
+
+  if (data) {
+    alert('Deletado com sucesso!!!')
+  } else {
+    alert('Erro')
+  }
 })
 
 // atualizar email -------------------------------------------------------
@@ -64,14 +121,14 @@ butaoAtualizarEmail.addEventListener('click', async e => {
   }
 
   if (emailNovo.length >= 200) {
-    alert('Email invalido')
+    // alert('Email invalido')
     return
   }
 
   const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
 
   if (!emailRegex.test(emailNovo)) {
-    alert('Email invalido')
+    // alert('Email invalido')
     return
   }
 
@@ -150,19 +207,17 @@ butaoAtualizar.addEventListener('click', async e => {
 butaoCadatro.addEventListener('click', async e => {
   e.preventDefault()
 
-  const divAtualizacoes = document.getElementById('atualizacoes')
-  const divCasdastro = document.getElementById('cadastro')
- 
   const nome = document.getElementById('nome').value
   const email = document.getElementById('email').value
 
   if (nome.length >= 300) {
-    alert('Isso n é nome')
+    alert('Atingiu o limite de letras')
+    // document.getElementById('nome').style.borderColor = 'red'
     return
   }
 
   if (email.length >= 200) {
-    alert('Email invalido')
+    // document.getElementById('email').style.borderColor = 'red'
     return
   }
 
@@ -170,10 +225,12 @@ butaoCadatro.addEventListener('click', async e => {
 
   if (!emailRegex.test(email)) {
     alert('Email invalido')
+    //  document.getElementById('email').style.borderColor = 'red'
     return
   }
 
   if (nome == '') {
+    // document.getElementById('nome').style.borderColor = 'red'
     alert('Por favor preencha o nome')
     return
   }
@@ -194,7 +251,9 @@ butaoCadatro.addEventListener('click', async e => {
   console.log(data)
 
   if (data) {
-    alert('Salvo com sucesso!!')
+    document.getElementById('nome').style.borderColor = 'green'
+    document.getElementById('email').style.borderColor = 'green'
+    document.getElementById('cadastro').style.borderColor = 'green'
   } else {
     alert('Erro')
   }
